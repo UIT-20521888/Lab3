@@ -6,6 +6,7 @@ from mpl_toolkits import mplot3d
 import cv2
 import imageio
 from utils import sphere, zakharov, rosenbrock, michalewicz, ackley, clip_numbers, DOMAIN
+import os
 
 GLOBAL_OPTIMUM = { 'Sphere' : [0, 0, 0],
             'Zakharov' : [0, 0, 0],
@@ -51,9 +52,9 @@ def draw_graph3D(xdata: np.array = [],
     Z = np.stack((X,Y), axis = 2)
     Z = get_function(objective_function, Z)
     x_global, y_global, z_global = GLOBAL_OPTIMUM[objective_function]
-
     # plt.show()
     # save file .gif
+    
     GEN = 0
     for i in range(1,8):
         if i == 7:

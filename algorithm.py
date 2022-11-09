@@ -113,11 +113,13 @@ class DE:
         # print(history_pop.shape)
         if self.num_parameters == 2 and self.num_individuals == 32 and self.random_seed == 20521888:
             file_name = os.path.join(path_file_gif,f"DE_{self.objective_function}_{self.num_parameters}")
+            os.mkdir(file_name)
+            file_name_next = os.path.join(file_name,f"DE_{self.objective_function}_{self.num_parameters}")
             draw_graph3D(xdata = history_pop[:,:,0] ,
                  ydata = history_pop[:,:,1],
                  zdata = history_fitness,
                  objective_function = self.objective_function,
-                 filename = file_name)
+                 filename = file_name_next)
         
         return history_best_eval
 
@@ -236,11 +238,13 @@ class CEM:
         history_pop, history_fitness = np.array(history_pop), np.array(history_fitness)
         if self.num_parameters == 2 and self.num_individuals == 32 and self.random_seed == 20521888:
             file_name = os.path.join(path_file_gif,f"CEM_{self.objective_function}_{self.num_parameters}")
+            os.mkdir(file_name)
+            file_name_next = os.path.join(file_name,f"CEM_{self.objective_function}_{self.num_parameters}")
             draw_graph3D(xdata = history_pop[:,:,0] ,
                  ydata = history_pop[:,:,1],
                  zdata = history_fitness,
                  objective_function = self.objective_function,
-                 filename = file_name)
+                 filename = file_name_next)
         
         return history_best_eval
 
