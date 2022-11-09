@@ -53,13 +53,3 @@ if __name__ == '__main__':
                     num_individuals = 32,
                     path_file_logger = './', 
                     path_file_git = './')
-    # print(history_de, history_cem)
-    # a = np.array([[[1,2],[3,5],[5,6]],[[4,5],[6,7],[1,2]]])
-    # index =  a[0,:,0]
-    # value = a[:,:,1]
-    # print(a.shape)
-    # print(index)
-    # print(value)
-    # c,d = call_mean_std(a[:,:,1])
-    # print(np.mean(value),np.std(value))
-    # print(np.mean(c), np.std([[7, 2], [5, 4]]))
