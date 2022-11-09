@@ -3,6 +3,7 @@ import numpy as np
 from animation import draw_graph3D
 import os
 import pandas as pd
+import json
 
 class DE:
     def __init__(self, num_individuals: int = 32,
@@ -113,21 +114,19 @@ class DE:
         f.close()
         # print(history_pop.shape)
         if self.num_parameters == 2 and self.num_individuals == 32 and self.random_seed == 20521888:
-            file_name = os.path.join(path_file_gif,f"DE_{self.objective_function}_{self.num_parameters}.xlsx")
-            dic = {"X_data":history_pop[:,:,0],
-                    "Y_data": history_pop[:,:,0],
-                    "Fitness":history_fitness}
-            data_df = pd.DataFrame(dic)
-              #        print(dic)
-            data_df.to_excel(file_name, index = False)
-            # os.mkdir(file_name)
-            # file_name_next = os.path.join(file_name,f"DE_{self.objective_function}_{self.num_parameters}")
-            # draw_graph3D(xdata = history_pop[:,:,0] ,
-            #      ydata = history_pop[:,:,1],
-            #      zdata = history_fitness,
-            #      objective_function = self.objective_function,
-            #      filename = file_name_next)
-        
+            file_name = os.path.join(path_file_gif,f"DE_{self.objective_function}_{self.num_parameters}.json")
+            data_gen = []
+            GEN = 0
+            for x,y,z in zip(history_pop[:,:,0], history_pop[:,:,1], history_fitness):
+                dic_pop = []
+                for x1,y1,z1 in zip(x,y,z):
+                    dic_pop.append({'x1':x1, 'y1':y1, 'z1':z1})
+                data_gen.append({f'#GEN_{GEN}':dic_pop})
+                GEN += 1
+            dic = {"history":data_gen}
+            with open(file_name, "w", encoding='utf-8') as outfile:
+                json.dump(dic, outfile, ensure_ascii = False, indent = 4)
+            
         return history_best_eval
 
 class CEM:
@@ -244,7 +243,7 @@ class CEM:
 
         history_pop, history_fitness = np.array(history_pop), np.array(history_fitness)
         if self.num_parameters == 2 and self.num_individuals == 32 and self.random_seed == 20521888:
-            file_name = os.path.join(path_file_gif,f"CEM_{self.objective_function}_{self.num_parameters}.xlsx")
+            file_name = os.path.join(path_file_gif,f"CEM_{self.objective_function}_{self.num_parameters}.json")
             # os.mkdir(file_name)
             # file_name_next = os.path.join(file_name,f"CEM_{self.objective_function}_{self.num_parameters}")
             # draw_graph3D(xdata = history_pop[:,:,0] ,
@@ -252,12 +251,21 @@ class CEM:
             #      zdata = history_fitness,
             #      objective_function = self.objective_function,
             #      filename = file_name_next)
-            dic = {"X_data":history_pop[:,:,0],
-                    "Y_data": history_pop[:,:,0],
-                    "Fitness":history_fitness}
-            data_df = pd.DataFrame(dic)
+            data_gen = []
+            GEN = 0
+            for x,y,z in zip(history_pop[:,:,0],history_pop[:,:,1], history_fitness):
+                dic_pop = []
+                for x1,y1,z1 in zip(x,y,z):
+                    dic_pop.append({'x1':x1, 'y1':y1, 'z1':z1})
+                data_gen.append({f'#GEN_{GEN}':dic_pop})
+                GEN += 1
+            dic = {"history":data_gen}
+            with open(file_name, "w", encoding='utf-8') as outfile:
+                json.dump(dic, outfile, ensure_ascii = False, indent = 4)
+            
+
     #        print(dic)
-            data_df.to_excel(file_name, index = False)
+            # data_df.to_excel(file_name, index = False)
         
         return history_best_eval
 
