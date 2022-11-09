@@ -54,39 +54,44 @@ def draw_graph3D(xdata: np.array = [],
 
     # plt.show()
     # save file .gif
-    with imageio.get_writer(f'{filename}.gif', mode='I', fps = 4) as writer:
-        GEN = 0
-        for x, y, z in zip(xdata, ydata, zdata):
-            # if np.all(z == z_global):
-            #     break
-            #create grap 3D
-            fig = plt.figure(figsize = (10, 10))
-            ax = plt.axes(projection='3d')
-            # set title
-            plt.title(f"{objective_function}\nGEN: {GEN}", fontsize = 30, fontweight = 'bold')
-            ax.set_xlabel('x1', fontsize = 15)
-            ax.set_ylabel('x2', fontsize = 15)
-            ax.set_zlabel('f(x1,x2)',fontsize = 15)
-            #set view 
-            ax.view_init(42,-179)
-            # draw grap
-            ax.scatter3D(x_global, y_global, z_global, color = 'b',s = 300, alpha = 1, label = 'Global optimum')
-            ax.plot_surface(X, Y, Z, rstride = 1, cstride = 1, cmap = 'Spectral', edgecolor = 'none', alpha = 0.6)
-            
-            plt.legend(loc='lower left')
-            ax.scatter3D(x, y, z, c = 'black', s = 150, label = 'pop')
-            plt.legend(loc = 'upper left')
-            #get image from grap
-            fig.canvas.draw()
-            img = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8,
-                sep='')
-            img  = img.reshape(fig.canvas.get_width_height()[::-1] + (3,))
-            img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-            
-            writer.append_data(img)
-            ax.cla()
-            GEN += 1
-        writer.close()
+    GEN = 0
+    for i in range(1,8):
+        if i == 7:
+            divide_X, divide_Y, divide_Z = xdata[(i-1)*500:], ydata[(i-1)*500:], zdata[(i-1)*500:]
+        else:
+            divide_X, divide_Y, divide_Z = xdata[(i-1)*500:i*500], ydata[(i-1)*500:i*500], zdata[(i-1)*500:i*500]
+        with imageio.get_writer(f'{filename}_{i}.gif', mode='I', fps = 4) as writer:
+            for x, y, z in zip(divide_X, divide_Y, divide_Z):
+                # if np.all(z == z_global):
+                #     break
+                #create grap 3D
+                fig = plt.figure(figsize = (10, 10))
+                ax = plt.axes(projection='3d')
+                # set title
+                plt.title(f"{objective_function}\nGEN: {GEN}", fontsize = 30, fontweight = 'bold')
+                ax.set_xlabel('x1', fontsize = 15)
+                ax.set_ylabel('x2', fontsize = 15)
+                ax.set_zlabel('f(x1,x2)',fontsize = 15)
+                #set view 
+                ax.view_init(42,-179)
+                # draw grap
+                ax.scatter3D(x_global, y_global, z_global, color = 'b',s = 300, alpha = 1, label = 'Global optimum')
+                ax.plot_surface(X, Y, Z, rstride = 1, cstride = 1, cmap = 'Spectral', edgecolor = 'none', alpha = 0.6)
+                
+                plt.legend(loc='lower left')
+                ax.scatter3D(x, y, z, c = 'black', s = 150, label = 'pop')
+                plt.legend(loc = 'upper left')
+                #get image from grap
+                fig.canvas.draw()
+                img = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8,
+                    sep='')
+                img  = img.reshape(fig.canvas.get_width_height()[::-1] + (3,))
+                img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+                
+                writer.append_data(img)
+                ax.cla()
+                GEN += 1
+            writer.close()
 
     
 
