@@ -79,6 +79,7 @@ def draw(filename: str, i: int,
                 ax.cla()
                 GEN += 1
             writer.close()
+    return GEN
 def draw_graph3D(xdata: np.array = [],
                  ydata: np.array = [],
                  zdata: np.array = [],
