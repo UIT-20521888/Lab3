@@ -16,13 +16,13 @@ def run_for_object_function(object_function: list  = LIST_FUNCTIONS):
     path_log = './File_log'
     path_result = './File_result'
     if os.path.exists(path_gif) == True:
-        os.remove(path_gif)
+        os.rmdir(path_gif)
     if os.path.exists(path_images) == True:
-        os.remove(path_images)
+        os.rmdir(path_images)
     if os.path.exists(path_log) == True:
-        os.remove(path_log)
+        os.rmdir(path_log)
     if os.path.exists(path_result) == True:
-        os.remove(path_result)
+        os.rmdir(path_result)
     os.mkdir(path_gif)
     os.mkdir(path_images)
     os.mkdir(path_log)
