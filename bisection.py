@@ -31,8 +31,8 @@ def run_10_times(objective_function: str,
         result_cem = cem.sover(path_file_git, path_file_logger)
         history_de.append(result_de)
         history_cem.append(result_cem)
-        if random_seed == 20521889:
-            break
+        # if random_seed == 20521889:
+        #     break
     # print(history_de, history_cem)
     history_de, history_cem = np.array(history_de), np.array(history_cem)
     # print(history_de.shape, history_cem.shape)
