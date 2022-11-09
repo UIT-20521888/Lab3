@@ -37,31 +37,17 @@ def get_function(objective_function: str = 'Sphere', Z: np.array = []) -> np.arr
             data.append(scores)
         results.append(data)    
     return np.array(results)
-    
-def draw_graph3D(xdata: np.array = [],
-                 ydata: np.array = [],
-                 zdata: np.array = [],
-                 objective_function: str = "Sphere",
-                 filename: str = "myfile"):
-    minx, maxx = DOMAIN[objective_function]
-    x = np.linspace(minx, maxx, 50)
-    y = np.linspace(minx, maxx, 50)
-
-    X, Y = np.meshgrid(x, y)
-
-    Z = np.stack((X,Y), axis = 2)
-    Z = get_function(objective_function, Z)
-    x_global, y_global, z_global = GLOBAL_OPTIMUM[objective_function]
-    # plt.show()
-    # save file .gif
-    
-    GEN = 0
-    for i in range(1,8):
-        if i == 7:
-            divide_X, divide_Y, divide_Z = xdata[(i-1)*500:], ydata[(i-1)*500:], zdata[(i-1)*500:]
-        else:
-            divide_X, divide_Y, divide_Z = xdata[(i-1)*500:i*500], ydata[(i-1)*500:i*500], zdata[(i-1)*500:i*500]
-        with imageio.get_writer(f'{filename}_{i}.gif', mode='I', fps = 4) as writer:
+def draw(filename: str, i: int,
+            divide_X: np.array, 
+            divide_Y: np.array, 
+            divide_Z: np.array, 
+            objective_function: str,
+            GEN: int,
+            x_global: float, 
+            y_global: float,  
+            z_global: float, 
+            X, Y, Z) -> int:
+    with imageio.get_writer(f'{filename}_{i}.gif', mode='I', fps = 4) as writer:
             for x, y, z in zip(divide_X, divide_Y, divide_Z):
                 # if np.all(z == z_global):
                 #     break
@@ -93,6 +79,41 @@ def draw_graph3D(xdata: np.array = [],
                 ax.cla()
                 GEN += 1
             writer.close()
+def draw_graph3D(xdata: np.array = [],
+                 ydata: np.array = [],
+                 zdata: np.array = [],
+                 objective_function: str = "Sphere",
+                 filename: str = "myfile"):
+    minx, maxx = DOMAIN[objective_function]
+    x = np.linspace(minx, maxx, 50)
+    y = np.linspace(minx, maxx, 50)
+
+    X, Y = np.meshgrid(x, y)
+
+    Z = np.stack((X,Y), axis = 2)
+    Z = get_function(objective_function, Z)
+    x_global, y_global, z_global = GLOBAL_OPTIMUM[objective_function]
+    # plt.show()
+    # save file .gif
+    
+    GEN = 0
+    for i in range(1,8):
+        if i == 7:
+            divide_X, divide_Y, divide_Z = xdata[(i-1)*500:], ydata[(i-1)*500:], zdata[(i-1)*500:]
+        else:
+            divide_X, divide_Y, divide_Z = xdata[(i-1)*500:i*500], ydata[(i-1)*500:i*500], zdata[(i-1)*500:i*500]
+        GEN = draw(filename = filename, i = i,
+                    divide_X = divide_X, 
+                    divide_Y = divide_Y, 
+                    divide_Z = divide_Z , 
+                    objective_function = objective_function,
+                    GEN = GEN,
+                    x_global = x_global,
+                    y_global = y_global ,
+                    z_global = z_global ,
+                    X = X, 
+                    Y = Y, 
+                    Z = Z)
 
     
 
