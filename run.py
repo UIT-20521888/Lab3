@@ -71,7 +71,7 @@ def run_for_N(path_log: str, path_gif: str,
         else:
             list_de.append(f"{np.mean(mean_10_time_de)} ({np.std(mean_10_time_de)})")
             list_cem.append(f"{np.mean(mean_10_time_cem)} ({np.std(mean_10_time_cem)})")
-    
+
     history_DE_32, history_CEM_32 = np.array(history_DE_32), np.array(history_CEM_32)
     history_DE_1024, history_CEM_1024 = np.array(history_DE_1024), np.array(history_CEM_1024)
     #draw graph with (f,d)
@@ -83,6 +83,9 @@ def run_for_N(path_log: str, path_gif: str,
                 num_parameters = num_parameters,
                 path_save = path_images)
     # save info
+    list_pop.append("* is where it is statistically significant and should be bolded")
+    list_de.append("")
+    list_cem.append("")
     path_save = os.path.join(path_result,f"{object_function}_{num_parameters}.xlsx")
     dic = {"Popsize":list_pop,
             "DE": list_de,
