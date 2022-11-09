@@ -29,7 +29,7 @@ def run_for_object_function(object_function: list  = LIST_FUNCTIONS):
     os.mkdir(path_result)
 
     for function in object_function:
-        run_for_object_d(path_log = path_log, path_images = path_images, path_gif = path_gif, object_function = function)
+        run_for_object_d(path_log = path_log, path_images = path_images, path_gif = path_gif, path_result = path_result, object_function = function)
 
 def run_for_object_d(path_log: str, path_images: str, path_gif:str, path_result:str, object_function, list_d:list = LIST_D):
     for d in list_d:
