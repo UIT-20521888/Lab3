@@ -110,7 +110,7 @@ class DE:
         history_pop, history_fitness = np.array(history_pop), np.array(history_fitness)
         f.write(f"#Result: mean = {np.mean(np.array(history_best_eval)[:,1])}\tstd = {np.std(np.array(history_best_eval)[:,1])}")
         f.close()
-        # print(history_pop.shape)
+        print(history_pop.shape)
         if self.num_parameters == 2 and self.num_individuals == 32 and self.random_seed == 20521888:
             file_name = os.path.join(path_file_gif,f"DE_{self.objective_function}_{self.num_parameters}")
             draw_graph3D(xdata = history_pop[:,:,0] ,

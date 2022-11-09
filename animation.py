@@ -86,12 +86,8 @@ def draw_graph3D(xdata: np.array = [],
             writer.append_data(img)
             ax.cla()
             GEN += 1
+        writer.close()
 
-def convergence_graph(history_DE_32: np.array,
-                        history_DE_1024: np.array,
-                        history_CEM_32: np.array,
-                        history_CEM_1024: np.array) -> None:
-    pass
     
 
 if __name__ == '__main__':
