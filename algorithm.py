@@ -133,7 +133,7 @@ class DE:
             dic = {"history":data_gen}
             with open(file_name, "w", encoding='utf-8') as outfile:
                 json.dump(dic, outfile, ensure_ascii = False, indent = 4)
-            
+        print(f"\tResult: mean = {np.mean(np.array(history_best_eval)[:,1])} std = {np.std(np.array(history_best_eval)[:,1])}")
         return history_best_eval
 
 class CEM:
@@ -240,8 +240,8 @@ class CEM:
             # save info
             f.write(f"{ GEN }\t{ pop[best_ind] }\t{ best }\t{ num_of_eval }\n")
 
-            print(f"#GEN: {GEN}\n\tBest_ind: {pop[best_ind]}\tfitness: {best}")
-            print(f"\tsigma = {sigma}, mu = {mu}")
+            # print(f"#GEN: {GEN}\n\tBest_ind: {pop[best_ind]}\tfitness: {best}")
+            # print(f"\tsigma = {sigma}, mu = {mu}")
 
             if num_of_eval >= self.max_of_eval:
                 break
@@ -274,7 +274,7 @@ class CEM:
 
     #        print(dic)
             # data_df.to_excel(file_name, index = False)
-        
+        print(f"\tResult: mean = {np.mean(np.array(history_best_eval)[:,1])} std = {np.std(np.array(history_best_eval)[:,1])}")
         return history_best_eval
 
 if __name__ == "__main__":
