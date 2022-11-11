@@ -9,7 +9,7 @@ import shutil
 MSSV = 20521888
 LIST_POP = [32, 64, 128, 256, 512, 1024]
 LIST_D = [2, 10]
-LIST_FUNCTIONS =  ["Zakharov" , 'Rosenbrock', 'Michalewicz', 'Ackley']
+LIST_FUNCTIONS =  ['Sphere', "Zakharov" , 'Rosenbrock', 'Michalewicz', 'Ackley']
 
 def run_for_object_function(object_function: list  = LIST_FUNCTIONS):
     path_gif = './File_gif'
@@ -88,11 +88,12 @@ def run_for_N(path_log: str, path_gif: str,
                 num_parameters = num_parameters,
                 path_save = path_images)
     # save info
-    list_pop.append("* is where it is statistically significant and should be bolded")
+    list_pop_2 = list_pop.copy()
+    list_pop_2.append("* is where it is statistically significant and should be bolded")
     list_de.append("")
     list_cem.append("")
     path_save = os.path.join(path_result,f"{object_function}_{num_parameters}.xlsx")
-    dic = {"Popsize":list_pop,
+    dic = {"Popsize":list_pop_2,
             "DE": list_de,
             "CEM": list_cem}
     data_df = pd.DataFrame(dic)
