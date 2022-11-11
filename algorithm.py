@@ -41,7 +41,13 @@ class DE:
 
     def _init_pop(self) -> np.array:
         x_min, x_max = DOMAIN[self.objective_function]
-        pop = np.random.rand(self.num_individuals, self.num_parameters) * (x_max - x_min) + x_min
+        try:
+            pop = np.random.rand(self.num_individuals, self.num_parameters) * (float(x_max) - float(x_min)) + float(x_min)
+        except:
+            print(self.num_individuals,self.num_parameters)
+            print(x_min, x_max )
+            print(x_max.type,x_max.type)
+            exit(1)
         return pop
 
     def mutant_population(self,fitness: np.array ,pop: np.array) -> np.array:
