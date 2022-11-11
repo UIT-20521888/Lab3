@@ -9,7 +9,7 @@ import shutil
 MSSV = 20521888
 LIST_POP = [32, 64, 128, 256, 512, 1024]
 LIST_D = [2, 10]
-LIST_FUNCTIONS =  ['Sphere',"Zakharov" , 'Rosenbrock', 'Michalewicz', 'Ackley']
+LIST_FUNCTIONS =  ["Zakharov" , 'Rosenbrock', 'Michalewicz', 'Ackley']
 
 def run_for_object_function(object_function: list  = LIST_FUNCTIONS):
     path_gif = './File_gif'
