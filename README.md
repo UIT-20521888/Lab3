@@ -24,5 +24,31 @@ the target 𝑓𝑖𝑡𝑛𝑒𝑠( $𝑏𝑒𝑠𝑡_i$) saved as above, the h
 case N=128 and 1024 of DE and CEM for easy viewing. The line in the middle is
 average value over 10 runs, and error bars are +/- 1 std. Can draw
 error bar with fill_between.
-![image]
+![image](./File_images/Sphere_2_png.png)
+- You make a statistical table for the final result as follows for each combination (f, d).
 
+| Popsize N / λ | CE | CEM |
+| :---: | :---: | :---: |
+| 32 | Mean (std) | Mean (std) |
+| 64 | Mean (std) | Mean (std) |
+| 128 | Mean (std) | Mean (std) |
+| 256 | Mean (std) | Mean (std) |
+| 512 | Mean (std) | Mean (std) |
+| 1024 | Mean (std) | Mean (std) |
+
+**Mean**: Average objective value of the best solution over 10 runs for the combination
+(f,d) respectively.
+
+**std**: Standard deviation of the objective value of the best solution over 10 runs for the group
+match (f, d) respectively.
+
+**_It is necessary to check the t-test statistical significance of the results and better highlight the results (cost
+mean less) in each case._**
+
+### How to run the code
+you just need to do the following steps
+```
+git clone https://github.com/UIT-20521888/Lab3.git
+cd Lab3
+python3 run.py or bash run.sh
+```
