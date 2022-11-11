@@ -80,7 +80,7 @@ class DE:
 
         return np.array(ind_offset), np.array(fitness_offset)
     def sover(self, path_file_gif, path_file_logger):
-        print(f"[INFO]#Sover with:\n\tF = {self.objective_function}\n\tD = {self.num_parameters}\n\tnum of pop = {self.num_individuals}\n\trandom = {self.random_seed}")
+        print(f"[INFO]#Sover DE with:\n\tF = {self.objective_function}\n\tD = {self.num_parameters}\n\tnum of pop = {self.num_individuals}\n\trandom = {self.random_seed}")
         np.random.seed(self.random_seed)
 
         pop = self._init_pop()
@@ -201,7 +201,7 @@ class CEM:
         return sigma_update, mu_update
 
     def sover(self, path_file_gif: str, path_file_logger: str):
-        print(f"[INFO]]#Sover with:\n\tF = {self.objective_function}\n\tD = {self.num_parameters}\n\tnum of pop = {self.num_individuals}\n\trandom = {self.random_seed}")
+        print(f"[INFO]]#Sover CEM with:\n\tF = {self.objective_function}\n\tD = {self.num_parameters}\n\tnum of pop = {self.num_individuals}\n\trandom = {self.random_seed}")
         np.random.seed(self.random_seed) 
         GEN = 0
         weights, sigma, mu = self.__initparam()
