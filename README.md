@@ -15,7 +15,7 @@ Information about these functions: formula of objective function, domain of valu
 - For each case (f,d,N), we need to run the experiment 10 times, using different random seeds
 - Each time the experiment runs, the algorithm stops immediately after 100,000 times (for d=2)
 or 1,000,000 times (for d=10) the fitness evaluation function is called.
-You save information about the best solution and the value of the objective function( $𝑏𝑒𝑠𝑡_{i}$ )
+You save information about ** (#0000FF) the best solution $best_i$ (#0000FF)and the value of the objective function( $𝑏𝑒𝑠𝑡_{i}$ ) **
 that DE and CEM find at each generation and the number of evaluation function calls
 (num_of_evaluations) used from the beginning of the experiment to the end of the generation this thing
 
