@@ -80,6 +80,7 @@ class DE:
 
         return np.array(ind_offset), np.array(fitness_offset)
     def sover(self, path_file_gif, path_file_logger):
+        print(f"#Sover with:\n\tF = {self.objective_function}\n\tD = {self.num_parameters}\n\tnum of pop = {self.num_individuals}\n\trandom = {self.random_seed}")
         np.random.seed(self.random_seed)
 
         pop = self._init_pop()
