@@ -80,7 +80,7 @@ class DE:
 
         return np.array(ind_offset), np.array(fitness_offset)
     def sover(self, path_file_gif, path_file_logger):
-        print(f"#Sover with:\n\tF = {self.objective_function}\n\tD = {self.num_parameters}\n\tnum of pop = {self.num_individuals}\n\trandom = {self.random_seed}")
+        print(f"[INFO]#Sover with:\n\tF = {self.objective_function}\n\tD = {self.num_parameters}\n\tnum of pop = {self.num_individuals}\n\trandom = {self.random_seed}")
         np.random.seed(self.random_seed)
 
         pop = self._init_pop()
@@ -94,7 +94,7 @@ class DE:
         history_pop, history_fitness = [pop], [fitness]
         history_best_eval = [[num_of_eval, best]]
         
-        print(f"#GEN: {GEN}\n\tBest-ind: { pop[best_ind] }\n\tFitness: {best}")
+        # print(f"#GEN: {GEN}\n\tBest-ind: { pop[best_ind] }\n\tFitness: {best}")
         file_logger = os.path.join(path_file_logger, f"DE_{self.objective_function}_{self.num_parameters}_{self.num_individuals}_{self.random_seed}.txt")
         f = open(file_logger, 'w+',encoding = 'utf-8')
         f.write("#GEN\tx_best\tf(x_best)\t#eval\n")
@@ -110,7 +110,7 @@ class DE:
             num_of_eval += self.num_individuals
             history_best_eval.append([num_of_eval, best])
 
-            print(f"#GEN: { GEN }\n\tBest-ind: { pop[best_ind] }\n\tFitness: { best }")
+            # print(f"#GEN: { GEN }\n\tBest-ind: { pop[best_ind] }\n\tFitness: { best }")
             f.write(f"{ GEN }\t{ pop[best_ind] }\t{ best }\t{ num_of_eval }\n")
 
             if num_of_eval >= self.max_of_eval:
@@ -201,6 +201,7 @@ class CEM:
         return sigma_update, mu_update
 
     def sover(self, path_file_gif: str, path_file_logger: str):
+        print(f"[INFO]]#Sover with:\n\tF = {self.objective_function}\n\tD = {self.num_parameters}\n\tnum of pop = {self.num_individuals}\n\trandom = {self.random_seed}")
         np.random.seed(self.random_seed) 
         GEN = 0
         weights, sigma, mu = self.__initparam()
@@ -220,8 +221,8 @@ class CEM:
         f.write("#GEN\tx_best\tf(x_best)\t#eval\n")
         f.write(f"{ GEN }\t{ pop[best_ind] }\t{ best }\t{ num_of_eval }\n")
 
-        print(f"#GEN: {GEN}\n\tBest_ind: {pop[best_ind]}\tfitness: {best}")
-        print(f"\tsigma = {sigma}, mu = {mu}")
+        # print(f"#GEN: {GEN}\n\tBest_ind: {pop[best_ind]}\tfitness: {best}")
+        # print(f"\tsigma = {sigma}, mu = {mu}")
 
         while True:
 
