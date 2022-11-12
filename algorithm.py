@@ -182,6 +182,7 @@ class CEM:
     def __sample(self, mu:np.array , sigma: np.array) -> np.array:
         # print(mu, sigma)
         pop = np.random.multivariate_normal(mean = mu, cov = sigma, size = self.num_individuals)
+        pop = clip_numbers(pop, self.objective_function)
         fitness = [self._objectsfunction(ind) for ind in pop]
         return pop, np.array(fitness)
 
