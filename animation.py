@@ -7,6 +7,8 @@ import cv2
 import imageio
 from utils import sphere, zakharov, rosenbrock, michalewicz, ackley, clip_numbers, DOMAIN
 import os
+import json
+import sys
 
 GLOBAL_OPTIMUM = { 'Sphere' : [0, 0, 0],
             'Zakharov' : [0, 0, 0],
@@ -116,7 +118,32 @@ def draw_graph3D(xdata: np.array = [],
                     Y = Y, 
                     Z = Z)
 
+def read_file_gif(path_file:str) ->np.array:
+    with open(path_file,'r',encoding='utf-8') as f:
+        data = json.load(f)
+    data = np.array(data['history'])
+    x_data, y_data, z_data = [], [],[]
+    for gen, value in enumerate(data):
+        x, y, z = [], [], []
+        for pid in value[f'#GEN_{gen}']:
+            x.append(pid['x1'])
+            y.append(pid['y1'])
+            z.append(pid['z1'])
+        x_data.append(x)
+        y_data.append(y)
+        z_data.append(z)
+
+    return np.array(x_data), np.array(y_data), np.array(z_data)
     
 
 if __name__ == '__main__':
-    draw_graph3D( xdata = [[1,2,4,5],[1,2]], ydata = [[1,2,3,4],[1,3]], zdata = [[1,2,3,4],[1,5]],objective_function = 'Ackley')
+    path_save = sys.argv[4]
+    path_gif = sys.argv[2]
+    x_data, y_data, z_data = read_file_gif(path_gif)
+    file = path_gif.split('/')[-1]
+    path_foder = os.path.join(path_save,file.split('.')[0])
+    os.mkdir(path_foder)
+    path_file_save = os.path.join(path_foder, file.split('.')[0])
+    objective_function = file.split('.')[0].split('_')[1]
+    draw_graph3D(x_data, y_data, z_data, objective_function,path_file_save)
+    # print(path_save, path_gif)
