@@ -23,8 +23,8 @@ def draw_grap(history_DE_32: np.array,
     # Set graph
     plt.subplots(figsize=(15,10))
     # plot line mean
-    plt.plot(label, f_DE_32, color = 'b', label = "DE_32", linewidth = 2)
-    plt.plot(label, f_CEM_32, color = 'r', label = "CEM_32", linewidth = 2)
+    plt.plot(label, f_DE_32, color = 'b', label = "DE_128", linewidth = 2)
+    plt.plot(label, f_CEM_32, color = 'r', label = "CEM_128", linewidth = 2)
     plt.plot(label, f_DE_1024, color = 'g', label = "DE_1024", linewidth = 2)
     plt.plot(label, f_CEM_1024, color = 'y', label = "CEM_1024", linewidth = 2)
     # plot scatern

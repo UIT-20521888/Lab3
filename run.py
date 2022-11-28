@@ -61,7 +61,7 @@ def run_for_N(path_log: str, path_gif: str,
                                                                                                             path_file_git = path_gif,
                                                                                                             path_file_logger = path_log)
         
-        if pop == 32:
+        if pop == 128:
             history_DE_32, history_CEM_32 = [num_of_eval,means_de, std_de], [num_of_eval, means_cem, std_cem]
         if pop == 1024:
             history_DE_1024, history_CEM_1024 = [num_of_eval, means_de, std_de], [num_of_eval, means_cem, std_cem]

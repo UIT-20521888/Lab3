@@ -142,7 +142,7 @@ class CEM:
                         objective_function: str = 'Sphere',
                         max_of_eval: int = 100000,
                         random_seed: int = 20521888,
-                        init_singma: int = 5,
+                        init_singma: int = 10,
                         init_epsilon: int = 0.1,
                         num_selection: int = 10):
         self.num_individuals = num_individuals
@@ -176,7 +176,7 @@ class CEM:
         weights = [self.__calculate(index) for index in range(self.num_selection)]
         weights = weights / sum(weights)
         sigma = np.identity(self.num_parameters) * self.init_singma
-        mu = np.zeros(self.num_parameters)
+        mu = np.ones(self.num_parameters) * self.init_singma
         return np.array(weights), sigma, mu
     
     def __sample(self, mu:np.array , sigma: np.array) -> np.array:
