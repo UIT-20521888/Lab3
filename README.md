@@ -25,7 +25,8 @@ case N=128 and 1024 of DE and CEM for easy viewing. The line in the middle is
 average value over 10 runs, and error bars are +/- 1 std. Can draw
 error bar with fill_between.
 
-    ![image](./File_images/Sphere_2_png.png)
+![image](./File_images/Sphere_2_png.png)
+    
 - You make a statistical table for the final result as follows for each combination (f, d).
 
 | Popsize N / λ | CE | CEM |
